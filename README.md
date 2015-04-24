@@ -17,12 +17,12 @@ doing analysis on the Multi-worm Tracker.
 * Git (http://sourceforge.net/projects/git-osx-installer/files/latest/download)
 * R (http://cran.r-project.org/bin/macosx/R-latest.pkg)
 
-##### If you use Windows
+#### If you use Windows
 * Git Bash (http://msysgit.github.io/) 
 * Git (installed above with Git Bash)
 * R (http://cran.r-project.org/bin/windows/base/release.htm)
 
-##### If you use Linux
+#### If you use Linux
 * Bash Shell: The default shell is usually bash, but if your machine is set up differently 
 you can run it by opening a terminal and typing bash. There is no need to install anything.
 * Git: If Git is not already available on your machine you can try to install it via your 
