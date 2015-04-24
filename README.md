@@ -23,14 +23,14 @@ doing analysis on the Multi-worm Tracker.
 * R (http://cran.r-project.org/bin/windows/base/release.htm)
 
 #### If you use Linux
-* Bash Shell: The default shell is usually bash, but if your machine is set up differently 
-you can run it by opening a terminal and typing bash. There is no need to install anything.
+* Bash Shell: The default shell is usually `bash`, but if your machine is set up differently 
+you can run it by opening a terminal and typing `bash`. There is no need to install anything.
 * Git: If Git is not already available on your machine you can try to install it via your 
-distro's package manager. For Debian/Ubuntu run sudo apt-get install git and for Fedora 
-run sudo yum install git.
+distro's package manager. For Debian/Ubuntu run `sudo apt-get install git` and for Fedora 
+run `sudo yum install git`.
 * R: You can download the binary files for your distribution from CRAN. Or you can use 
-your package manager (e.g. for Debian/Ubuntu run sudo apt-get install r-base and for 
-Fedora run sudo yum install R). Also, please install the RStudio IDE.
+your package manager (e.g. for Debian/Ubuntu run `sudo apt-get install r-base` and for 
+Fedora run `sudo yum install R`). Also, please install the RStudio IDE.
 
 
 Software Installation instructions are courtesy of Software Carpentry 
