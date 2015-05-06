@@ -25,12 +25,12 @@ Multi-worm tracker (Swierczek et al., 2011).
 * habituation_probability_driver.sh requires the following arguments from the user: 
 (1) path to chore.jar (offline analys program Choreography), (2) gigabytes of memory to 
 be used to run Choreography (dependent upon the machine you are using, (3) type of 
-stimulus, (4) path to data, (5) time to stimulus onset, (6) number of stimuli and 
+stimulus, (4) path to data.srev, (5) time to stimulus onset, (6) number of stimuli and 
 (7) interstimulus interval. 
 See example below:
 
 ~~~
-bash bin/habituation_probability_driver.sh /Users/this_user/Chore.jar tap data/Figure1 8 100 30 10
+bash bin/habituation_probability_driver.sh /Users/this_user/Chore.jar tap data/Figure1/data.srev 8 100 30 10
 ~~~
 
 * More instructions to come as code is developed further.
