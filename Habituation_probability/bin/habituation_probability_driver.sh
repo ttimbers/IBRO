@@ -14,7 +14,7 @@
 ##		$2: gigabytes of memory to be used to run Choreography (dependent upon
 ##			the machine you are using
 ##		$3: type of stimulus 
-##		$4:	path to data (suggest relative path from project's root directory)
+##		$4:	relative path to data.srev file (will be created on line 32)
 ##		$5: time to stimulus onset 
 ##		$6: number of stimuli
 ##		$7: interstimulus interval
@@ -29,7 +29,7 @@ for folder in */; do java -Xmx$2g -jar $1 --shadowless -p 0.027 -M 2 -t 20 -S -o
 ## need to create a large file containing all data files with 
 ## data, plate name and strain name in each row
 ##grep -r '[0-9]' $(find ./data -name '*.dat') > merged.file
-for filename in $(find . -name '*.rev'); do grep -H '[0-9]' $filename >> $4.srev; done
+for filename in $(find . -name '*.rev'); do grep -H '[0-9]' $filename >> data.srev; done
 cd ../..
 
 ## create figure (Reversal probability versus stimulus number, plotting 95% confidence 
