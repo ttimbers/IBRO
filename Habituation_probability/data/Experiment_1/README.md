@@ -1,0 +1,1 @@
+Copy all your unzipped MWT experiment folders for a single figure into this directory.
