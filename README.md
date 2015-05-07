@@ -16,12 +16,15 @@ doing analysis on the Multi-worm Tracker (Swierczek et al., 2011).
 #### If you use a Mac
 * Bash Shell: Terminal (found in /Applications/Utilities on your computer)
 * Git (http://sourceforge.net/projects/git-osx-installer/files/latest/download)
+* Xcode (required for Git, https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12)
 * R (http://cran.r-project.org/bin/macosx/R-latest.pkg)
+* R libraries: stringr, plyr, binom, ggplot2, multcomp
 
 #### If you use Windows
 * Git Bash (http://msysgit.github.io/) 
 * Git (installed above with Git Bash)
 * R (http://cran.r-project.org/bin/windows/base/release.htm)
+* R libraries: stringr, plyr, binom, ggplot2, multcomp
 
 #### If you use Linux
 * Bash Shell: The default shell is usually `bash`, but if your machine is set up differently 
@@ -32,6 +35,7 @@ run `sudo yum install git`.
 * R: You can download the binary files for your distribution from CRAN. Or you can use 
 your package manager (e.g. for Debian/Ubuntu run `sudo apt-get install r-base` and for 
 Fedora run `sudo yum install R`). Also, please install the RStudio IDE.
+* R libraries: stringr, plyr, binom, ggplot2, multcomp
 
 
 Software Installation instructions are courtesy of Software Carpentry 

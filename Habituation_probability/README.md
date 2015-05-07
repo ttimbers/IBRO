@@ -2,9 +2,7 @@
 
 This software will allow you to plot habituation probability graphs and generate 
 statistical comparisons between groups (if there are multiple groups) using data from the
-Multi-worm tracker (Swierczek et al., 2011). 
-
-# This is still a work in progress and is not yet functional.
+Multi-worm tracker (MWT; Swierczek et al., 2011). 
 
 
 ## Figures it generates
@@ -18,19 +16,19 @@ Multi-worm tracker (Swierczek et al., 2011).
 
 ## How to use it
 
-* Set working directory to project's root directory
+* Put your unzipped MWT experiment folders inside an experiment directory in the projects 
+data directory
+
+* In the Shell, set the working directory to project's root directory
 
 * Call habituation_probability_driver.sh from the Bash Shell
 
 * habituation_probability_driver.sh requires the following arguments from the user: 
-(1) path to chore.jar (offline analys program Choreography), (2) gigabytes of memory to 
+(1) absolute path to chore.jar (offline analys program Choreography), (2) gigabytes of memory to 
 be used to run Choreography (dependent upon the machine you are using, (3) type of 
-stimulus, (4) path to data.srev, (5) time to stimulus onset, (6) number of stimuli and 
-(7) interstimulus interval. 
+stimulus and (4) path to directory where your data is stored 
 See example below:
 
 ~~~
-bash bin/habituation_probability_driver.sh /Users/this_user/Chore.jar tap data/Figure1/data.srev 8 100 30 10
+bash bin/habituation_probability_driver.sh /Users/tiffany/Documents/PostDoc/IBRO/Habituation_probability/bin/Chore.jar 8 puff data/Experiment_1
 ~~~
-
-* More instructions to come as code is developed further.

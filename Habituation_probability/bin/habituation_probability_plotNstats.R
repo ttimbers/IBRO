@@ -1,20 +1,14 @@
 ## Get arguements from command line
 ##    $4 in shell is #1 (args[1]) in R: path to data (suggest relative path from project's root directory)
-##  	$5 in shell is #2 (args[2]) in R: time to stimulus onset 
-##		$6 in shell is #3 (args[3]) in R: number of stimuli
-##		$7 in shell is #4 (args[4]) in R: interstimulus interval
 
 ## Make args a list of the items in the command line after the script was called.
 args <- commandArgs(trailingOnly = TRUE)
 
 ## assign variable names to arguements
 data_dir_path <- args[1]
-stim_onset <- args[2]
-num_stim <- args[3]
-isi <- args[4]
 
 ## load data into R (data.srev)
-data <- read.table(data_dir_path, header = FALSE)
+data <- read.table(paste(data_dir_path, "/data.srev", sep=""), header = FALSE)
 
 ## split up the first column (V1) into date, plate, time and strain 
 
@@ -79,8 +73,11 @@ data_prob_aggregate <- ddply(data_prob, c("strain", "time"), summarise,
 
 ## Calculate the proportion of worms responding
 data_prob_aggregate <- ddply(data_prob_aggregate, c("strain", "time"), transform, 
-                             rev_prob= (reversal / N)
+                             rev_prob= (reversal / N))
                              
+## make time numeric
+data_prob_aggregate$time <- factor(data_prob_aggregate$time)
+
 ## take a look at the data
 head(data_prob_aggregate)
 
@@ -97,10 +94,76 @@ conf_int
 
 ## Add these confidence intervals to the data frame
 data_prob_aggregate$conf_int_lower <- conf_int$lower
-data_prob_aggregate$conf_int_lower <- conf_int$upper
+data_prob_aggregate$conf_int_upper <- conf_int$upper
 
 ## Checkout the data again
 head(data_prob_aggregate)
 
 ## Plot figure
 
+## load the ggplot2 library
+library(ggplot2)
+
+## make an object called my_plot which contains the plotting commands
+my_plot <- ggplot(data_prob_aggregate, aes(time, rev_prob, color=factor(strain))) +
+        geom_line(aes(group=strain)) +
+        geom_point(size = 3) +
+        geom_errorbar(aes(ymin=rev_prob - conf_int_lower, ymax=rev_prob + conf_int_upper), 
+                      width=.1) +
+        ggtitle('Habituation') +
+        labs(x="Time(s)", y="Reversal Probability") +
+        theme(plot.title = element_text(size = 16, vjust=2), 
+               legend.title=element_blank(), 
+               legend.key=element_rect(fill='white'),
+               legend.text=element_text(size = 12),
+               panel.background = element_rect(fill = 'grey96'), 
+               axis.text.x=element_text(colour="black", size = 12),
+               axis.text.y=element_text(colour="black", size = 12),
+               axis.title.x = element_text(size = 14, vjust = -0.2),
+               axis.title.y = element_text(size = 14, vjust = 1.3)) +
+        ylim(c(0,1))
+
+## call the object to plot the figure
+my_plot
+
+## Get the name of the folder to save the figure to
+folder_to_save_in <- str_extract(data_dir_path, "/.{1,}")
+
+## make a folder in results to hold figure and stats
+system(paste("mkdir results", folder_to_save_in, sep=""))
+
+## make a variable containing the folder path to save to and the name of the figure
+path_to_save <- paste("results", folder_to_save_in, "/figure.pdf", sep="")
+
+## Save figure in results in appropriate folder
+pdf(path_to_save, width=6, height=6)
+my_plot
+dev.off()
+
+## Do a logistic regression to test if there is a significant difference 
+## between habituated levels if there are multiple strains in the dataset
+if (length(strain_list) > 1) {
+  ## fit a logistic regression with reversal probility modeled against strain
+  my_glm <- glm(rev_prob ~ strain, weights = N, family = binomial(link = "logit"), 
+                data = data_prob_aggregate)
+  
+  ## Get the logistic regression summary statistics
+  summary(my_glm)
+  
+  ## write stats to a text file
+  my_glm_summary <- capture.output(summary(my_glm), file = NULL)
+  write.table(my_glm_summary, file=paste("results", folder_to_save_in, "/stats.txt", sep=""), append = TRUE, quote=FALSE, row.names=FALSE, col.names=FALSE)
+  write.table("", file=paste("results", folder_to_save_in, "/stats.txt", sep=""), append = TRUE, quote=FALSE, row.names=FALSE, col.names=FALSE)
+  
+  ## load the library to perform multiple comparisons
+  library(multcomp)
+  
+  ## perform a Tukey's HSD multiple comparison posthoc test
+  glht_my_glm <- glht(my_glm, mcp(strain="Tukey"))
+  summary(glht_my_glm) 
+  
+  ## write stats to a text file
+  my_tukey_summary <- capture.output(summary(glht_my_glm), file = NULL)
+  write.table(my_tukey_summary, file=paste("results", folder_to_save_in, "/stats.txt", sep=""), append = TRUE, quote=FALSE, row.names=FALSE, col.names=FALSE)
+  write.table("", file=paste("results", folder_to_save_in, "/stats.txt", sep=""), append = TRUE, quote=FALSE, row.names=FALSE, col.names=FALSE)
+} 

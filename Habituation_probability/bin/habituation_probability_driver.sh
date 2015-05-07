@@ -10,14 +10,12 @@
 ## Set working directory to project's root directory
 ##
 ## Requires the following input from the user:
-##		$1: path to chore.jar (offline analys program Choreography)
+##		$1: absolute path to chore.jar (offline analys program Choreography)
 ##		$2: gigabytes of memory to be used to run Choreography (dependent upon
 ##			the machine you are using
 ##		$3: type of stimulus 
-##		$4:	relative path to data.srev file (will be created on line 32)
-##		$5: time to stimulus onset 
-##		$6: number of stimuli
-##		$7: interstimulus interval
+##		$4:	directory that data is in 
+
 
 ## Call choreography to analyze the MWT data. This must be done for each plate (i.e. 
 ## each folder from  your experiment today). Choreography output options here ask for 
@@ -35,5 +33,5 @@ cd ../..
 ## create figure (Reversal probability versus stimulus number, plotting 95% confidence 
 ## interval) and do stats (Logistic regression comparing initial reversal probability and
 ## final reversal probability between groups).
-rscript bin/habituation_probability_plotNstats.R $4 $5 $6 $7
+rscript bin/habituation_probability_plotNstats.R $4
 
