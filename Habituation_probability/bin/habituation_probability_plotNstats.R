@@ -105,23 +105,23 @@ head(data_prob_aggregate)
 library(ggplot2)
 
 ## make an object called my_plot which contains the plotting commands
-my_plot <- ggplot(data_prob_aggregate, aes(time, rev_prob, color=factor(strain))) +
-        geom_line(aes(group=strain)) +
-        geom_point(size = 3) +
-        geom_errorbar(aes(ymin=conf_int_lower, ymax=conf_int_upper), 
-                      width=.1) +
-        ggtitle('Habituation') +
-        labs(x="Time(s)", y="Reversal Probability") +
-        theme(plot.title = element_text(size = 16, vjust=2), 
-               legend.title=element_blank(), 
-               legend.key=element_rect(fill='white'),
-               legend.text=element_text(size = 12),
-               panel.background = element_rect(fill = 'grey96'), 
-               axis.text.x=element_text(colour="black", size = 12, angle = 90),
-               axis.text.y=element_text(colour="black", size = 12),
-               axis.title.x = element_text(size = 14, vjust = -0.2),
-               axis.title.y = element_text(size = 14, vjust = 1.3)) +
-        ylim(c(0,1)) 
+my_plot <- ggplot(data_prob_aggregate, aes(time, rev_prob, color=factor(strain))) + ## plot Reversal probability against time for each strain
+        geom_line(aes(group=strain)) + ## make a line connecting all the points in the plot
+        geom_point(size = 3) + ## make points larger
+        geom_errorbar(aes(ymin=conf_int_lower, ymax=conf_int_upper), ## add 95% confidence intervals
+                      width=.1) + ## make the confidence interval 0.1 width
+        ggtitle('Habituation') + ## add a title to the plot
+        labs(x="Time(s)", y="Reversal Probability") + ## label the x and y axes
+        theme(plot.title = element_text(size = 16, vjust=2), ## Make the plot title larger and higher
+               legend.title=element_blank(), ## remove the legend label
+               legend.key=element_rect(fill='white'), ## remove the blocks around the legend items
+               legend.text=element_text(size = 12), ## make the legend text font larger
+               panel.background = element_rect(fill = 'grey96'), ## make the plot background grey
+               axis.text.x=element_text(colour="black", size = 12, angle = 90), ## change the x-axis values font to black and make larger
+               axis.text.y=element_text(colour="black", size = 12), ## change the y-axis values font to black and make larger
+               axis.title.x = element_text(size = 14, vjust = -0.2), ## change the x-axis label font to black, make larger, and move away from axis
+               axis.title.y = element_text(size = 14, vjust = 1.3)) + ## change the y-axis label font to black, make larger, and move away from axis
+        ylim(c(0,1)) ## Set the y-axis limits to a range from 0 to 1
 
 ## call the object to plot the figure
 my_plot
