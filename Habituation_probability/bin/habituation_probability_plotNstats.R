@@ -49,7 +49,7 @@ data <- cbind(date, plate, strain, time, data[,2:dim(data)[2]])
 rm(date, plate, strain, time)
 
 ##name columns  
-colnames(data) <- c("date", "plate", "strain",  "time", "wrongway", "no_response", "reversal",
+colnames(data) <- c("date", "plate", "strain",  "time", "wrongway", "no_response", "rev",
                     "dist_avg", "dist_std", "dist_sem", "dist_min", "dist_25th", "dist_median",
                     "dist_75th", "dist_max", "dur_avg", "dur_std", "dur_sem", "dur_min", "dur_25th",
                     "dur_median", "dur_75th", "dur_max")
@@ -68,8 +68,8 @@ library(plyr)
 
 ## For each strain, calculate the number of worms respoding and the sample size,
 data_prob_aggregate <- ddply(data_prob, c("strain", "time"), summarise,
-                             reversal = sum(reversal),
-                             N = sum(no_response + reversal))
+                             reversal = sum(rev),
+                             N = sum(no_response + rev))
 
 ## Calculate the proportion of worms responding
 data_prob_aggregate <- ddply(data_prob_aggregate, c("strain", "time"), transform, 
@@ -108,7 +108,7 @@ library(ggplot2)
 my_plot <- ggplot(data_prob_aggregate, aes(time, rev_prob, color=factor(strain))) +
         geom_line(aes(group=strain)) +
         geom_point(size = 3) +
-        geom_errorbar(aes(ymin=rev_prob - conf_int_lower, ymax=rev_prob + conf_int_upper), 
+        geom_errorbar(aes(ymin=conf_int_lower, ymax=conf_int_upper), 
                       width=.1) +
         ggtitle('Habituation') +
         labs(x="Time(s)", y="Reversal Probability") +
@@ -117,11 +117,11 @@ my_plot <- ggplot(data_prob_aggregate, aes(time, rev_prob, color=factor(strain))
                legend.key=element_rect(fill='white'),
                legend.text=element_text(size = 12),
                panel.background = element_rect(fill = 'grey96'), 
-               axis.text.x=element_text(colour="black", size = 12),
+               axis.text.x=element_text(colour="black", size = 12, angle = 90),
                axis.text.y=element_text(colour="black", size = 12),
                axis.title.x = element_text(size = 14, vjust = -0.2),
                axis.title.y = element_text(size = 14, vjust = 1.3)) +
-        ylim(c(0,1))
+        ylim(c(0,1)) 
 
 ## call the object to plot the figure
 my_plot
@@ -136,7 +136,7 @@ system(paste("mkdir results", folder_to_save_in, sep=""))
 path_to_save <- paste("results", folder_to_save_in, "/figure.pdf", sep="")
 
 ## Save figure in results in appropriate folder
-pdf(path_to_save, width=6, height=6)
+pdf(path_to_save, width=9, height=6)
 my_plot
 dev.off()
 
@@ -167,3 +167,4 @@ if (length(strain_list) > 1) {
   write.table(my_tukey_summary, file=paste("results", folder_to_save_in, "/stats.txt", sep=""), append = TRUE, quote=FALSE, row.names=FALSE, col.names=FALSE)
   write.table("", file=paste("results", folder_to_save_in, "/stats.txt", sep=""), append = TRUE, quote=FALSE, row.names=FALSE, col.names=FALSE)
 } 
+
