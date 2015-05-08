@@ -6,7 +6,7 @@ Multi-worm tracker (MWT; Swierczek et al., 2011).
 
 
 ## Figures it generates
-* Reversal probability versus stimulus number
+* Reversal probability versus stimulus (plotted on x-axis as time of presentation)
 * 95% confidence intervals (Clopper Pearson method) for reversal probability
 
 ## Statistics reported (if multiple groups)
@@ -18,14 +18,16 @@ Multi-worm tracker (MWT; Swierczek et al., 2011).
 * Put your unzipped MWT experiment folders inside an experiment directory in the project's 
 data directory
 
-* In the Shell, set the working directory to project's root directory
+* In the Shell, set the working directory to project's root directory 
+(`Habituation_probability/`)
 
-* Call habituation_probability_driver.sh from the Bash Shell
+* Call `bin/habituation_probability_driver.sh` from the Bash Shell
 
-* habituation_probability_driver.sh requires the following arguments from the user: 
-(1) absolute path to chore.jar (offline analys program Choreography), (2) gigabytes of memory to 
-be used to run Choreography (dependent upon the machine you are using, (3) type of 
-stimulus and (4) path to directory where your data is stored.
+* `habituation_probability_driver.sh` requires the following arguments from the user: 
+(1) absolute path to `chore.jar` (offline analys program Choreography), (2) gigabytes of 
+memory to be used to run Choreography (dependent upon the machine you are using, (3) type 
+of stimulus and (4) relative path to the directory where your data is stored 
+(e.g., `data/Experiment_1`).
 
  
 See example below:
