@@ -26,7 +26,7 @@ plate <- str_extract(data$V1, "[0-9]{8}_[0-9]{6}")
 ## info whether someone enters the strain name, the gene name, or the allele name. It might be 
 ## better to be more limited and consistent about what one enters into the filename in the MWT
 ## Tracker program for filename.
-strain <- str_extract(data$V1,"[A-Za-z]+[-]?[0-9]*")
+strain <- str_extract(data$V1,"[A-Za-z]+[-]?[0-9]*[A-Za-z]*")
 
 ## extract time information from first column (V1). Time gets included into the path string when we use 
 ## grep to combine all the files. It's format is: ##.###. But there could be more or less numeric 
