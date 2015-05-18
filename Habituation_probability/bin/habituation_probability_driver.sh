@@ -22,12 +22,12 @@
 ## reversals occurring within 0.5 s of a stimulus and speed over the duration of the 
 ## entire experiment (averaged over all the worms on the plate).
 cd $4
-for folder in */; do java -Xmx$2g -jar $1 --shadowless -p 0.027 -M 2 -t 20 -S -o s --plugin Reoutline::despike --plugin Respine --plugin MeasureReversal::$3::collect=0.5 $folder; done
+for folder in */; do java -Xmx$2g -jar $1 --shadowless --pixelsize 0.027 --minimum-move-body 2 --minimum-time 20 --segment --output speed,midline,morphwidth --plugin Reoutline::despike --plugin Respine --plugin MeasureReversal::$3::dt=1::collect=0.5 $folder; done
 
 ## need to create a large file containing all data files with 
 ## data, plate name and strain name in each row
-##grep -r '[0-9]' $(find ./data -name '*.dat') > merged.file
-for filename in $(find . -name '*.rev'); do grep -H '[0-9]' $filename >> data.srev; done
+grep -H '[0-9]' $(find . -name '*.rev') > $4/data.srev
+
 cd ../..
 
 ## create figure (Reversal probability versus stimulus number, plotting 95% confidence 
