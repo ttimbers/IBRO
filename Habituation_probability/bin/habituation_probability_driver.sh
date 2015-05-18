@@ -26,7 +26,7 @@ for folder in */; do java -Xmx$2g -jar $1 --shadowless --pixelsize 0.027 --minim
 
 ## need to create a large file containing all data files with 
 ## data, plate name and strain name in each row
-grep -H '[.]*' $(find . -name '*.rev') > $4/data.srev
+grep -H '[.]*' $(find . -name '*.rev') > data.srev
 
 cd ../..
 
