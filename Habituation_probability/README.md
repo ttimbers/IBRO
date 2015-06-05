@@ -72,5 +72,5 @@ of stimulus and (4) relative path to the directory where your data is stored
 See example below:
 
 ~~~
-bash bin/habituation_probability_driver.sh /Users/tiffany/Documents/PostDoc/IBRO/Habituation_probability/bin/Chore.jar 8 puff data/Experiment_1
+bash bin/habituation_probability_driver.sh 4 puff data/Experiment_1
 ~~~
