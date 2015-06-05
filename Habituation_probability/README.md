@@ -32,6 +32,7 @@ have it accesible as a shell script in the executable path named `Chore`:
 
 #### For Linux
 1. Install Linuxbrew by typing the following into the command line:
+
 	`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"`
 
 
