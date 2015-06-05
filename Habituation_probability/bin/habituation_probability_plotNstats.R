@@ -1,5 +1,5 @@
 ## Get arguements from command line
-##    $4 in shell is #1 (args[1]) in R: path to data (suggest relative path from project's root directory)
+##    $3 in shell is #1 (args[1]) in R: path to data (suggest relative path from project's root directory)
 
 ## Make args a list of the items in the command line after the script was called.
 args <- commandArgs(trailingOnly = TRUE)
@@ -26,7 +26,7 @@ plate <- str_extract(data$V1, "[0-9]{8}_[0-9]{6}")
 ## info whether someone enters the strain name, the gene name, or the allele name. It might be 
 ## better to be more limited and consistent about what one enters into the filename in the MWT
 ## Tracker program for filename.
-strain <- str_extract(data$V1,"[0-9]+/[A-Za-z]+[-]?[0-9]*[A-Za-z]*")
+strain <- str_extract(data$V1,"[0-9]{6}/[A-Za-z]+[-]?[0-9]*[A-Za-z]*")
 strain <- sub("[0-9]+/", "", strain)
 
 ## extract time information from first column (V1). Time gets included into the path string when we use 
@@ -67,7 +67,7 @@ strain_list  <- unique(data$strain)
 ## load the plyr library to access the data frame summarizing function "ddply"
 library(plyr)
 
-## For each strain, calculate the number of worms respoding and the sample size,
+## For each strain, calculate the number of worms responding and the sample size,
 data_prob_aggregate <- ddply(data_prob, c("strain", "time"), summarise,
                              reversal = sum(rev),
                              N = sum(no_response + rev))
