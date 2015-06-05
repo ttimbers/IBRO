@@ -32,7 +32,7 @@ instructions:
 have it accesible as a shell script in the executable path named `Chore`:
 
 
-`brew install homebrew/science/multi-worm/tracker`
+`brew install homebrew/science/multi-worm-tracker`
 
 
 #### For Linux
@@ -42,11 +42,20 @@ have it accesible as a shell script in the executable path named `Chore`:
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"`
 
 
-2. Install the Multi-worm Tracker Analysis software via Homebrew to install Chore.jar and
+2. Put brew in your executable path by adding the commands below to either `.bashrc` or 
+`.zshrc`: 
+
+~~~
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+~~~
+
+3. Install the Multi-worm Tracker Analysis software via Homebrew to install Chore.jar and
 have it accesible as a shell script in the executable path named `Chore`:
 
 
-`brew install homebrew/science/multi-worm/tracker`
+`brew install homebrew/science/multi-worm-tracker`
 
 
 ### Running the analysis
