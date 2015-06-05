@@ -24,7 +24,10 @@ instructions:
 
 #### For Mac OSX
 1. Install Homebrew by typing the following into the command line:
+
 	`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+	
+	
 2. Install the Multi-worm Tracker Analysis software via Homebrew to install Chore.jar and
 have it accesible as a shell script in the executable path named `Chore`:
 	`brew install homebrew/science/multi-worm-tracker`
