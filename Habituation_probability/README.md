@@ -54,7 +54,7 @@ have it accesible as a shell script in the executable path named "Chore":
 	~~~
 
 3. Install the Multi-worm Tracker Analysis software via Homebrew to install Chore.jar and
-	have it accesible as a shell script in the executable path named `Chore`:
+	have it accesible as a shell script in the executable path named "Chore":
 	`brew install homebrew/science/multi-worm-tracker`
 
 
@@ -70,7 +70,7 @@ data directory
 
 * `habituation_probability_driver.sh` requires the following arguments from the user: 
 (1) gigabytes of memory to be used to run Choreography (dependent upon the machine you are 
-using, (2) type of stimulus and (4) relative path to the directory where your data is 
+using, (2) type of stimulus and (3) relative path to the directory where your data is 
 stored (e.g., `data/Experiment_1`).
 
  
