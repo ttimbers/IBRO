@@ -1,16 +1,22 @@
 # Habituation probability
 
-This software will allow you to plot habituation probability graphs and generate 
-statistical comparisons between groups (if there are multiple groups) using data from the
-Multi-worm tracker (MWT; Swierczek et al., 2011). 
+This software will allow you to plot habituation graphs (reversal probability versus 
+stimulus) and generates statistical comparisons between groups (if there are multiple 
+groups) using data from the Multi-worm tracker (MWT; Swierczek et al., 2011). 
 
 
 ## Figures it generates
 * Reversal probability versus stimulus (plotted on x-axis as time of presentation)
 * 95% confidence intervals (Clopper Pearson method) for reversal probability
+* This is saved as `figure.pdf` in a subdirectory of the results directory which the 
+script automatically creates and names to be the same name as the directory containing
+the data.
 
 ## Statistics reported (if multiple groups)
-* Logistic regression comparing final reversal probability between groups.
+* Logistic regression comparing final reversal probability between groups
+* This is saved as a text file called `stats.txt`in a subdirectory of the results 
+directory which this script automatically creates and names to be the same name as the 
+directory containing the data.
 
 
 ## How to use it
